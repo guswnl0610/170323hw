@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout llayout;
     ImageView imageView,imageView2;
     TextView textView;
+    int degree = 30;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         imageView = (ImageView)findViewById(R.id.iv);
         imageView2 = (ImageView)findViewById(R.id.iv2);
         textView = (TextView)findViewById(R.id.tv);
+
     }
 
     @Override
@@ -52,8 +55,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.turn30:
-                    imageView.setRotation(30);
-                    imageView2.setRotation(30);
+
+                imageView.setRotation(degree);
+                imageView2.setRotation(degree);
+                degree +=30;
                 break;
 
             case R.id.showtitle:
