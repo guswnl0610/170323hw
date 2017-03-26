@@ -17,11 +17,10 @@ import org.w3c.dom.Text;
 
 public class CalActivity extends ActivityGroup
 {
-    Button bmib,ptomb, mtopb;
     EditText etheight,etweight, etm;
     TextView bmires, pmres;
     TabHost tabHost;
-    double bmi, mp, h, w;
+
     int p,m;
 
     @Override
@@ -35,23 +34,20 @@ public class CalActivity extends ActivityGroup
         tabHost.addTab(tab1);//1번탭 생성
         TabHost.TabSpec tab2 = tabHost.newTabSpec("B").setContent(R.id.tab2).setIndicator("면적 계산기");
         tabHost.addTab(tab2);//2번탭 생성
-        Button bmib = (Button)findViewById(R.id.bmibutton);
-        Button ptomb = (Button)findViewById(R.id.ptombutn);
-        Button mtopb = (Button)findViewById(R.id.mtopbtn);
-        EditText etheight = (EditText)findViewById(R.id.etheight);
-        EditText etweight = (EditText)findViewById(R.id.etweight);
-        EditText etm = (EditText)findViewById(R.id.etmeter);
-        TextView bmires = (TextView)findViewById(R.id.tvbmires);
-        TextView pmres = (TextView)findViewById(R.id.tvmetres);
+        etheight = (EditText)findViewById(R.id.etheight);
+        etweight = (EditText)findViewById(R.id.etweight);
+        etm = (EditText)findViewById(R.id.etmeter);
+        bmires = (TextView)findViewById(R.id.tvbmires);
+        pmres = (TextView)findViewById(R.id.tvmetres);
     }
-
+    //BMI 버튼 리스너
     public void bmilistener(View v)
     {
         if(v.getId() == R.id.bmibutton)
         {
-            h = Double.parseDouble(etheight.getText().toString());
-            w = Double.parseDouble(etweight.getText().toString());
-            bmi = w / ((h/100) * (h/100));
+            double h = Double.parseDouble(etheight.getText().toString());
+            double w = Double.parseDouble(etweight.getText().toString());
+            double bmi = w / ((h/100) * (h/100));
             if (bmi < 18.5)
             {
                 bmires.setText("저체중이에요~");
@@ -70,40 +66,19 @@ public class CalActivity extends ActivityGroup
             }
         }
     }
-
+    //면적 계산 버튼 리스너
     public void pmlistener(View v)
     {
         switch (v.getId())
         {
             case R.id.ptombutn:
-
+                double ptom = Double.parseDouble(etm.getText().toString()) * 3.305785;
+                pmres.setText(ptom + "제곱미터");
                 break;
             case R.id.mtopbtn:
-
+                double mtop = Double.parseDouble(etm.getText().toString()) * 0.3025;
+                pmres.setText(mtop + "평");
                 break;
         }
-    }
-
-    // 메뉴붙이기
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu1, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        if(item.getItemId() == R.id.goto1)
-        {
-            Intent intent = new Intent(CalActivity.this, MainActivity.class);
-            startActivity(intent);
-        }
-        if(item.getItemId() == R.id.goto2)
-        {
-            Intent intent2 = new Intent(CalActivity.this, CalActivity.class);
-            startActivity(intent2);
-        }
-        return super.onOptionsItemSelected(item);
     }
 }
