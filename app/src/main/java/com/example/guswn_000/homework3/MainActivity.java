@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle("치킨과 스파게티");
         llayout = (LinearLayout)findViewById(R.id.llayout1);
         imageView = (ImageView)findViewById(R.id.iv);
         imageView2 = (ImageView)findViewById(R.id.iv2);
